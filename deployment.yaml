@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-2048
+spec:
+  replicas: 3  # Number of replicas
+  selector:
+    matchLabels:
+      app: game-2048
+  template:
+    metadata:
+      labels:
+        app: game-2048
+    spec:
+      containers:
+      - name: game-2048
+        image: <your-docker-image>  # Replace with your Docker image name
+        ports:
+        - containerPort: 80  # Nginx listens on port 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: game-2048-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: game-2048
