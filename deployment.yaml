@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: game-2048
 spec:
-  replicas: 3  # Number of replicas
+  replicas: 3  # Number of replica
   selector:
     matchLabels:
       app: game-2048
